@@ -1,5 +1,4 @@
-# SqlDetac
-<br/>
+# SqlDetach
 <h4>从代码中剥离SQL，提供高效维护SQL和简单处理SQL条件的方法</h4>
 <div>
     <p>摆脱频繁的数据库操作代码，使你的代码更清晰可读！ 很高兴与您分享迷人的SQLDetach架构</p>
