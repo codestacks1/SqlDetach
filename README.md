@@ -18,3 +18,111 @@
     <p style="margin-left:20px;color:blue;">Xiaowen.SqlDetach.MvcWebDemo</p>
     <p style="margin-left:20px;">MVC架构Web站点，包含前端处理UI交互条件及事件的演示Code</p>
 </div>
+<br/>
+<div>
+<p>
+*修改条件处理器方法，增加isSpecialHandler，即该条件是否需要特殊处理具体，具体使用方法后期维护写入Demo
+</p>
+<code>
+<pre>
+/// <summary>
+/// 条件处理器
+///     快速、统一处理查询条件
+/// </summary>
+/// <param name="dataParameter"></param>
+/// <param name="param">此处有约束，前两个参数一定只允许是日期或时间</param>
+/// <returns></returns>
+private static StringBuilder WhereConditionHandler(ref ArrayList dataParameter, params WhereClauseSchema[] param)
+{
+    StringBuilder where = new StringBuilder();
+    DataParameter beingDate = null;
+
+    if (param != null)
+        foreach (WhereClauseSchema item in param)
+        {
+            if (item.IsExistFlag == true)
+            {
+                if (item.IsSingleDate != null)
+                {
+                    if (item.IsSingleDate == true)
+                    {
+                        if (item.Content != null)
+                        {
+                            if (item.IsSpecialHandler == true)
+                            {
+                                where.AppendFormat(" AND {0}={1}", item.Condition, "@" + item.PrimaryKey);
+                                dataParameter.Add(new DataParameter("@" + item.PrimaryKey, item.Content));
+                            }
+                            else
+                            {
+                                where.AppendFormat(" AND {0}={1}", item.Condition, "@" + item.Condition);
+                                dataParameter.Add(new DataParameter("@" + item.Condition, item.Content));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (item.Content != null)
+                        {
+                            if (beingDate == null)
+                            {
+                                beingDate = new DataParameter("@" + item.PrimaryKey, item.Content);
+                                where.AppendFormat(" AND {0}>={1}", item.Condition, "@" + item.PrimaryKey);
+                                dataParameter.Add(new DataParameter("@" + item.PrimaryKey, item.Content));
+                            }
+                            else
+                            {
+                                where.AppendFormat(" AND {0}<={1}", item.Condition, "@End" + item.PrimaryKey);
+                                dataParameter.Add(new DataParameter("@End" + item.PrimaryKey, item.Content));
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    where.AppendFormat(" AND {0}={1}", item.Condition, "@" + item.Condition);
+                    dataParameter.Add(new DataParameter("@" + item.Condition, item.Content));
+                }
+            }
+            else
+
+                if (item.IsSingleDate != null)
+                {
+                    if (item.IsSingleDate == true)
+                    {
+                        if (item.Content != null)
+                        {
+                            where.AppendFormat(" AND {0}={1}", item.Condition, "@" + item.Condition);
+                            dataParameter.Add(new DataParameter("@" + item.Condition, item.Content));
+                        }
+                    }
+                    else
+                    {
+                        if (item.Content != null)
+                        {
+                            if (beingDate == null)
+                            {
+                                beingDate = new DataParameter("@" + item.PrimaryKey, item.Content);
+                                where.AppendFormat(" AND {0}>={1}", item.Condition, "@" + item.PrimaryKey);
+                                dataParameter.Add(beingDate);
+                            }
+                            else
+                            {
+                                where.AppendFormat(" AND {0}<={1}", item.Condition, "@End" + item.PrimaryKey);
+                                dataParameter.Add(new DataParameter("@End" + item.PrimaryKey, item.Content));
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    where.AppendFormat(" AND {0}={1}", item.Condition, "@" + item.Condition);
+                    dataParameter.Add(new DataParameter("@" + item.Condition, item.Content));
+                }
+
+        }
+    return where;
+}
+</pre>
+</code>
+</div>
