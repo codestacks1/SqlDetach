@@ -68,45 +68,8 @@
   <ItemGroup>
     <Compile Include="DboEntry.cs" />
     <Compile Include="DboEntryBase.cs" />
-    <Compile Include="DemoTb.cs">
-      <DependentUpon>SqlDetachModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlDetachDemo\DemoDAL.cs" />
-    <Compile Include="SqlDetachModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SqlDetachModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SqlDetachModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SqlDetachModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SqlDetachModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SqlDetachModel.edmx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="SqlDetach.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlDetachModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SqlDetachModel.edmx</DependentUpon>
-      <LastGenOutput>SqlDetachModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="SqlDetachModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SqlDetachModel.edmx</DependentUpon>
-      <LastGenOutput>SqlDetachModel.cs</LastGenOutput>
-    </Content>
-    <Content Include="SqlDetach_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>SqlDetach.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -122,14 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
-    <EntityDeploy Include="SqlDetachModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SqlDetachModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="SqlDetachModel.edmx.diagram">
-      <DependentUpon>SqlDetachModel.edmx</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xiaowen.SqlDetach.Basic\Xiaowen.SqlDetach.Basic.csproj">

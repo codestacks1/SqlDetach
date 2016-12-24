@@ -26,23 +26,23 @@ namespace Xiaowen.SqlDetach.DAL
 
             try
             {
-                //DB链接，执行SQL
-                using (SqlDetachEntities dbo = new SqlDetachEntities())
-                {
-                    //dbo.Database.Connection.Open();
-                    dbo.DemoTbs.Add(new DemoTb()
-                    {
-                        Alias = "Kelvin",
-                        Author = "张孝文",
-                        Email = "z.xiaowen@foxmail.com",
-                        MobilePhone = "185****7012",
-                        CreatedBy = 1,
-                        CreatedOn = DateTime.Now,
-                        UpdatedBy = 1,
-                        UpdatedOn = DateTime.Now
-                    });
-                    int actionResult = dbo.SaveChanges();
-                }
+                ////DB链接，执行SQL
+                //using (SqlDetachEntities dbo = new SqlDetachEntities())
+                //{
+                //    //dbo.Database.Connection.Open();
+                //    dbo.DemoTbs.Add(new DemoTb()
+                //    {
+                //        Alias = "Kelvin",
+                //        Author = "张孝文",
+                //        Email = "z.xiaowen@foxmail.com",
+                //        MobilePhone = "185****7012",
+                //        CreatedBy = 1,
+                //        CreatedOn = DateTime.Now,
+                //        UpdatedBy = 1,
+                //        UpdatedOn = DateTime.Now
+                //    });
+                //    int actionResult = dbo.SaveChanges();
+                //}
             }
             catch (Exception ex)
             {
